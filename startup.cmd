@@ -69,10 +69,13 @@ on error halt
 #-
 #-------------------------------------------------------------------------------
 #- load required modules
+require misc
+
 epicsEnvSet(ECMC_VER,${ECMC_VER=11.1.1})
 epicsEnvSet("ECMC_REQUIRE_ECMC", "${ECMC_REQUIRE_ECMC=require ecmc}")
 ${ECMC_REQUIRE_ECMC} "${ECMC_VER}"
 ecmcLogBufferWrite("INFO","IOC startup started.")
+
 
 #- Require EthercatMC if used.
 ecmcEpicsEnvSetCalcTernary(ECMC_EXE_CMD, "'${ECMC_MR_MODULE=ecmcMotorRecord}'='EthercatMC'", "require  EthercatMC ${EthercatMC_VER=3.0.2} # Using EthercatMC motor record support.","# Using ecmcMotorRecord motor record support.")
